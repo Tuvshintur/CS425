@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Add Supplier</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+            integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+            crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.15/jquery.mask.min.js"></script>
+    <script src="/main.js"></script>
+</head>
+<body>
+<div class="container">
+    <nav class="navbar navbar-expand-lg navbar-light">
+        <a class="navbar-brand" href="#">GDM</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02"
+                aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+            <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+                <li class="nav-item">
+                    <a class="nav-link" href="/home">Home<span class="sr-only"></span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/secured/supplier">Supplier<span class="sr-only"></span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/secured/product">Product<span class="sr-only"></span></a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    <div style="margin-bottom: 1em;">
+        <span style="font-size: 2em; color: #32a5e7;">Add Supplier Form</span>
+    </div>
+
+    <div style="margin-top: 1em;"></div>
+
+    <form id="addSupplierForm" method="post" action="/secured/supplier/add" th:object="${supplier}">
+        <fieldset>
+            <input type="hidden" name="supplierId" th:value="${supplier.supplierId}"/>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <label for="supplierNumber">Supplier Number</label>
+                        <span th:if="${#fields.hasErrors('supplierNumber')}" th:errors="*{supplierNumber}"
+                              class="alert alert-danger"></span>
+                        <input id="supplierNumber" name="supplierNumber" type="number" class="form-control"
+                               th:value="${supplier.supplierNumber}"/>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="supplierName">SupplierName</label>
+                        <span th:if="${#fields.hasErrors('name')}" th:errors="*{name}"
+                              class="alert alert-danger"></span>
+                        <input id="supplierName" name="name" type="text" class="form-control"
+                               th:value="${supplier.name}"/>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="contactPhoneNumber">Contact Number</label>
+                        <span th:if="${#fields.hasErrors('contactPhoneNumber')}" th:errors="*{contactPhoneNumber}"
+                              class="alert alert-danger"></span>
+                        <input id="contactPhoneNumber" name="contactPhoneNumber" type="text" class="form-control"
+                               th:value="${supplier.contactPhoneNumber}" placeholder="(000) 000-0000"/>
+                    </div>
+                </div>
+            </div>
+            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Save Supplier</button>
+        </fieldset>
+    </form>
+</div>
+</body>
+</html>
