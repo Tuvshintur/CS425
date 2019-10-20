@@ -1,0 +1,26 @@
+-- master.css --
+
+@charset "utf-8";
+html {
+    position: relative;
+    min-height: 100%;
+}
+
+body {
+    /* Margin bottom by footer height */
+    margin-bottom: 50px;
+}
+
+.footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    /* Set the fixed height of the footer here */
+    height: 50px;
+    line-height: 50px; /* Vertically center the text there */
+    background-color: #f5f5f5;
+}
+
+tr.datarow {
+    cursor: pointer;
+}

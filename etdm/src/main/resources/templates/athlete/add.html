@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>athlete</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+            integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+            crossorigin="anonymous"></script>
+</head>
+<body>
+<div class="container">
+    <nav class="navbar navbar-expand-lg navbar-light">
+        <a class="navbar-brand" href="/home">eTalentDataManager</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02"
+                aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+            <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+                <li class="nav-item">
+                    <a class="nav-link" href="/home">Home<span class="sr-only"></span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/athlete">Athletes<span class="sr-only"></span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/eliteAthlete">Elite Athletes<span class="sr-only"></span></a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    <div style="margin-bottom: 1em;">
+        <span style="font-size: 2em; color: #32a5e7;">Add Athlete Form</span>
+    </div>
+
+    <div style="margin-top: 1em;"></div>
+
+    <form id="addAccountForm" method="post" action="/athlete/add" th:object="${athlete}">
+        <fieldset>
+            <input type="hidden" name="accountId" th:value="${athlete.athleteId}"/>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="ssn">Social Security Number</label>
+                        <span th:if="${#fields.hasErrors('ssn')}" th:errors="*{ssn}"
+                              class="alert alert-danger"></span>
+                        <input id="ssn" name="ssn" type="text" class="form-control"
+                               th:value="${athlete.ssn}"/>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="phoneNumber">Phone Number</label>
+                        <span th:if="${#fields.hasErrors('phoneNumber')}" th:errors="*{phoneNumber}"
+                              class="alert alert-danger"></span>
+                        <input id="phoneNumber" name="phoneNumber" type="text" class="form-control"
+                               th:value="${athlete.phoneNumber}"/>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="fullName">Full Name</label>
+                        <span th:if="${#fields.hasErrors('fullName')}" th:errors="*{fullName}"
+                              class="alert alert-danger"></span>
+                        <input id="fullName" name="fullName" type="text" class="form-control"
+                               th:value="${athlete.fullName}"/>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="eMailAddress">Email Address</label>
+                        <span th:if="${#fields.hasErrors('eMailAddress')}" th:errors="*{eMailAddress}"
+                              class="alert alert-danger"></span>
+                        <input id="eMailAddress" name="eMailAddress" type="text" class="form-control"
+                               th:value="${athlete.eMailAddress}"/>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="dateOfBirth">Date Of Birth</label>
+                        <span th:if="${#fields.hasErrors('dateOfBirth')}" th:errors="*{dateOfBirth}"
+                              class="alert alert-danger"></span>
+                        <input id="dateOfBirth" name="dateOfBirth" type="date" class="form-control"
+                               th:value="${athlete.dateOfBirth}"/>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="dateOfRegistration">Date Of Registration</label>
+                        <span th:if="${#fields.hasErrors('dateOfRegistration')}" th:errors="*{dateOfRegistration}"
+                              class="alert alert-danger"></span>
+                        <input id="dateOfRegistration" name="dateOfRegistration" type="date" class="form-control"
+                               th:value="${athlete.dateOfRegistration}"/>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="totalNumberOfMedalsWon">Number Of Medals Won</label>
+                        <span th:if="${#fields.hasErrors('fullName')}" th:errors="*{totalNumberOfMedalsWon}"
+                              class="alert alert-danger"></span>
+                        <input id="totalNumberOfMedalsWon" name="totalNumberOfMedalsWon" type="number"
+                               class="form-control"
+                               th:value="${athlete.totalNumberOfMedalsWon}"/>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="monthlySalary">Monthly Salary</label>
+                        <span th:if="${#fields.hasErrors('monthlySalary')}" th:errors="*{monthlySalary}"
+                              class="alert alert-danger"></span>
+                        <input id="monthlySalary" name="monthlySalary" type="number" step="0.01" class="form-control"
+                               th:value="${athlete.monthlySalary}"/>
+                    </div>
+                </div>
+            </div>
+            <button class="btn btn-outline-success my-2 my-sm-0" style="float: right;" type="submit">Save Athlete
+            </button>
+        </fieldset>
+    </form>
+</div>
+</body>
+</html>

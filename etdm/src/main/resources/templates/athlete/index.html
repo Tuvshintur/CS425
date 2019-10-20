@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>athlete</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+            integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+            crossorigin="anonymous"></script>
+</head>
+<body>
+<div class="container">
+    <nav class="navbar navbar-expand-lg navbar-light">
+        <a class="navbar-brand" href="/home">eTalentDataManager</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02"
+                aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+            <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+                <li class="nav-item">
+                    <a class="nav-link" href="/home">Home<span class="sr-only"></span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/athlete">Athletes<span class="sr-only"></span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/eliteAthlete">Elite Athletes<span class="sr-only"></span></a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    <div>
+        <span style="font-size: 2em; color: #32a5e7;">Athletes in our system</span>
+        <span style="float:right;">
+                <a class="btn btn-outline-success btn-lg" href="/athlete/add">Add new athlete</a>
+        </span>
+    </div>
+
+    <form class="form-inline my-2 my-lg-0" style="margin-top: 2em !important;" action="/athlete/search" method="get">
+        <input class="form-control mr-sm-2 " type="search" placeholder="FullName of Athlete" name="searchString" id="searchString" th:value="${searchString}"/>
+        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+    </form>
+
+    <table class="table table-striped" style="margin-top: 2em;">
+        <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">SSN</th>
+            <th scope="col">Full Name</th>
+            <th scope="col">Phone</th>
+            <th scope="col">Date Of Birth</th>
+            <th scope="col">Date Of Registration</th>
+            <th scope="col">Medals Won</th>
+            <th scope="col">Salary</th>
+            <th scope="col">Email</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="athlete,iterState :${athletes}">
+            <th scope="row" th:text="${iterState.count}"></th>
+            <td th:text="${athlete.ssn}"></td>
+            <td th:text="${athlete.fullName}"></td>
+            <td th:text="${athlete.phoneNumber}"></td>
+            <td th:text="${athlete.dateOfBirth}"></td>
+            <td th:text="${athlete.dateOfRegistration}"></td>
+            <td th:text="${athlete.totalNumberOfMedalsWon}"></td>
+            <td th:text="${athlete.monthlySalary}"></td>
+            <td th:text="${athlete.eMailAddress}"></td>
+        </tr>
+        </tbody>
+    </table>
+    <nav>
+        <ul class="pagination justify-content-center">
+            <li th:class="${currentPageNo} == 0 ? 'page-item disabled': 'page-item'">
+                <a class="page-link" th:href="@{/athlete(pageNo=${currentPageNo - 1})}" tabindex="-1">Previous</a>
+            </li>
+            <li th:each="i : ${#numbers.sequence(1, athletes.totalPages)}"
+                th:class="${currentPageNo}==${i - 1} ? 'page-item active' : 'page-item'">
+                <a th:href="@{/athlete(pageNo=${i - 1})}"
+                   th:text="${i}" class="page-link"></a>
+            </li>
+            <li th:class="${currentPageNo} == ${athletes.totalPages - 1} ? 'page-item disabled' : 'page-item'">
+                <a class="page-link" th:href="@{/athlete(pageNo=${currentPageNo + 1})}">Next</a>
+            </li>
+        </ul>
+    </nav>
+</div>
+</body>
+</html>
