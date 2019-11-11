@@ -1,0 +1,165 @@
+<h1 class="mat-display-1 mt-4 mb-4">Sprint Details - <b>{{currentSprint.name}}</b>
+    <button mat-raised-button color="primary" class="float-right" (click)="addTaskDialog()">
+        <mat-icon>add</mat-icon>
+        Add Task to Sprint
+    </button>
+</h1>
+<div class="taskBoard" cdkDropListGroup>
+    <mat-divider [vertical]="true"></mat-divider>
+    <div class="task-container">
+        <h4>New</h4>
+        <div cdkDropList
+             [cdkDropListData]="new"
+             class="task-list"
+             (cdkDropListDropped)="drop($event, 'NEW')">
+            <mat-card class="task-card" *ngFor="let item of new" cdkDrag [cdkDragData]="item">
+                <mat-card-content><h5>{{item.name}}</h5></mat-card-content>
+                <mat-card-subtitle>
+                    <div fxLayout.gt-xs="row" fxLayout.xs="column">
+                        <span fxFlex="50%">{{item.startDate}}</span>
+                        <span fxFlex="50%">{{item.dueDate}}</span>
+                    </div>
+                </mat-card-subtitle>
+                <mat-card-actions>
+                    <a mat-stroked-button color="accent" (click)="showTaskDetailDialog(item)">
+                        <mat-icon>remove_red_eye</mat-icon>
+                    </a>
+                    <button mat-stroked-button color="accent">
+                        <mat-icon>delete</mat-icon>
+                    </button>
+                </mat-card-actions>
+            </mat-card>
+        </div>
+    </div>
+    <mat-divider [vertical]="true"></mat-divider>
+    <div class="task-container">
+        <h4>Developing</h4>
+        <div cdkDropList
+             [cdkDropListData]="developing"
+             class="task-list"
+             (cdkDropListDropped)="drop($event, 'DEVELOPING')">
+            <mat-card class="task-card" *ngFor="let item of developing" cdkDrag [cdkDragData]="item">
+                <mat-card-content><h5>{{item.name}}</h5></mat-card-content>
+                <mat-card-subtitle>
+                    <div fxLayout.gt-xs="row" fxLayout.xs="column">
+                        <span fxFlex="50%">{{item.startDate}}</span>
+                        <span fxFlex="50%">{{item.dueDate}}</span>
+                    </div>
+                </mat-card-subtitle>
+                <mat-card-actions>
+                    <a mat-stroked-button color="accent" (click)="showTaskDetailDialog(item)">
+                        <mat-icon>remove_red_eye</mat-icon>
+                    </a>
+                    <button mat-stroked-button color="accent">
+                        <mat-icon>delete</mat-icon>
+                    </button>
+                </mat-card-actions>
+            </mat-card>
+        </div>
+    </div>
+    <mat-divider [vertical]="true"></mat-divider>
+    <div class="task-container">
+        <h4>To Be Tested</h4>
+        <div cdkDropList
+             [cdkDropListData]="tobeTested"
+             class="task-list"
+             (cdkDropListDropped)="drop($event, 'TOBETESTED')">
+            <mat-card class="task-card" *ngFor="let item of tobeTested" cdkDrag [cdkDragData]="item">
+                <mat-card-content><h5>{{item.name}}</h5></mat-card-content>
+                <mat-card-subtitle>
+                    <div fxLayout.gt-xs="row" fxLayout.xs="column">
+                        <span fxFlex="50%">{{item.startDate}}</span>
+                        <span fxFlex="50%">{{item.dueDate}}</span>
+                    </div>
+                </mat-card-subtitle>
+                <mat-card-actions >
+                    <a mat-stroked-button color="accent" (click)="showTaskDetailDialog(item)">
+                        <mat-icon>remove_red_eye</mat-icon>
+                    </a>
+                    <button mat-stroked-button color="accent">
+                        <mat-icon>delete</mat-icon>
+                    </button>
+                </mat-card-actions>
+            </mat-card>
+        </div>
+    </div>
+    <mat-divider [vertical]="true"></mat-divider>
+    <div class="task-container">
+        <h4>Testing</h4>
+        <div cdkDropList
+             [cdkDropListData]="testing"
+             class="task-list"
+             (cdkDropListDropped)="drop($event, 'TESTING')">
+            <mat-card class="task-card" *ngFor="let item of testing" cdkDrag [cdkDragData]="item">
+                <mat-card-content><h5>{{item.name}}</h5></mat-card-content>
+                <mat-card-subtitle>
+                    <div fxLayout.gt-xs="row" fxLayout.xs="column">
+                        <span fxFlex="50%">{{item.startDate}}</span>
+                        <span fxFlex="50%">{{item.dueDate}}</span>
+                    </div>
+                </mat-card-subtitle>
+                <mat-card-actions>
+                    <a mat-stroked-button color="accent" (click)="showTaskDetailDialog(item)">
+                        <mat-icon>remove_red_eye</mat-icon>
+                    </a>
+                    <button mat-stroked-button color="accent">
+                        <mat-icon>delete</mat-icon>
+                    </button>
+                </mat-card-actions>
+            </mat-card>
+        </div>
+    </div>
+    <mat-divider [vertical]="true"></mat-divider>
+    <div class="task-container">
+        <h4>Approved</h4>
+        <div cdkDropList
+             [cdkDropListData]="approved"
+             class="task-list"
+             (cdkDropListDropped)="drop($event, 'APPROVED')">
+            <mat-card class="task-card" *ngFor="let item of approved" cdkDrag [cdkDragData]="item">
+                <mat-card-content><h5>{{item.name}}</h5></mat-card-content>
+                <mat-card-subtitle>
+                    <div fxLayout.gt-xs="row" fxLayout.xs="column">
+                        <span fxFlex="50%">{{item.startDate}}</span>
+                        <span fxFlex="50%">{{item.dueDate}}</span>
+                    </div>
+                </mat-card-subtitle>
+                <mat-card-actions >
+                    <a mat-stroked-button color="accent" (click)="showTaskDetailDialog(item)">
+                        <mat-icon>remove_red_eye</mat-icon>
+                    </a>
+                    <button mat-stroked-button color="accent">
+                        <mat-icon>delete</mat-icon>
+                    </button>
+                </mat-card-actions>
+            </mat-card>
+        </div>
+    </div>
+    <mat-divider [vertical]="true"></mat-divider>
+    <div class="task-container">
+        <h4>Deployed</h4>
+        <div cdkDropList
+             [cdkDropListData]="deployed"
+             class="task-list"
+             (cdkDropListDropped)="drop($event, 'DEPLOYED')">
+            <mat-card class="task-card" *ngFor="let item of deployed" cdkDrag [cdkDragData]="item">
+                <mat-card-content><h5>{{item.name}}</h5></mat-card-content>
+                <mat-card-subtitle>
+                    <div fxLayout.gt-xs="row" fxLayout.xs="column">
+                        <span fxFlex="50%">{{item.startDate}}</span>
+                        <span fxFlex="50%">{{item.dueDate}}</span>
+                    </div>
+                </mat-card-subtitle>
+                <mat-card-actions>
+                    <a mat-stroked-button color="accent" (click)="showTaskDetailDialog(item)">
+                        <mat-icon>remove_red_eye</mat-icon>
+                    </a>
+                    <button mat-stroked-button color="accent">
+                        <mat-icon>delete</mat-icon>
+                    </button>
+                </mat-card-actions>
+            </mat-card>
+        </div>
+    </div>
+    <mat-divider [vertical]="true"></mat-divider>
+</div>

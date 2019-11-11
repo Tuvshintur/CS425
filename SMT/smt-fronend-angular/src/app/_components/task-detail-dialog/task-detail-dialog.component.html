@@ -1,0 +1,16 @@
+<mat-card>
+    <mat-card-header>
+        <mat-card-title>{{task.name}}</mat-card-title>
+        <mat-card-subtitle>
+            {{task.developmentEffortPoint}}/{{task.testEffortPoint}}
+        </mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-content>
+        <p>Status {{task.status}} | Developer: {{task.developer.username}} | Tester: {{task.tester.username}}</p>
+    </mat-card-content>
+    <b>Status Log</b>
+    <div *ngFor="let item of task.statusChangeRecords">
+        <div class="status_wrap">{{item.date}} : {{item.oldStatus}} -> {{item.newStatus}}</div>
+    </div>
+</mat-card>
+

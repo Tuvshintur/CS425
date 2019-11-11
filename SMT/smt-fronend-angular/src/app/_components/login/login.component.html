@@ -1,0 +1,39 @@
+<div class="jumbotron">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-6 offset-3">
+                <app-alert></app-alert>
+                <h2>Login</h2>
+                <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+                    <mat-form-field class="full-width">
+                        <input matInput required placeholder="User name" formControlName="username"
+                               [ngClass]="{ 'is-invalid': submitted && f.username.errors }"/>
+                        <div *ngIf="submitted && f.username.errors" class="invalid-feedback">
+                            <div *ngIf="f.username.errors.required">Username is required</div>
+                        </div>
+                    </mat-form-field>
+
+                    <mat-form-field class="full-width">
+                        <input matInput type="password" required placeholder="Password" formControlName="password"
+                               [ngClass]="{ 'is-invalid': submitted && f.password.errors }"/>
+                        <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
+                            <div *ngIf="f.password.errors.required">Password is required</div>
+                        </div>
+                    </mat-form-field>
+                    <mat-dialog-actions>
+                        <button mat-button class="mat-raised-button mat-primary mr-2" [disabled]="loading"
+                                (click)="onSubmit()" type="submit">
+                            <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>
+                            Login
+                        </button>
+                        <button mat-button class="mat-raised-button"
+                                routerLink="/register">
+                            Register
+                        </button>
+                    </mat-dialog-actions>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+

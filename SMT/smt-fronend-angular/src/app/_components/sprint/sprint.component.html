@@ -1,0 +1,81 @@
+<div class="container">
+    <h1 class="mat-display-1 mt-4 mb-4">Project detail</h1>
+    <div class="taskBoard" cdkDropListGroup>
+        <div class="task-container">
+            <div class="row">
+                <div class="col-md-3" style="border-right:1px solid #ccc; min-height: 100vh;">
+                    <h3 class="mat-display-1 mt-4 mb-4">Backlogs
+                        <button mat-stroked-button color="primary" class="float-right" (click)="addTaskDialog()">
+                            <mat-icon>add</mat-icon>
+                            Add
+                        </button>
+                    </h3>
+                    <mat-card class="task-card mb-2" *ngFor="let item of tasks" cdkDrag [cdkDragData]="item">
+                        <mat-card-content><h5>{{item.name}}</h5></mat-card-content>
+                        <mat-card-subtitle>
+                            <div fxLayout.gt-xs="row" fxLayout.xs="column">
+                                <span fxFlex="50%">{{item.startDate}}</span>
+                                <span fxFlex="50%">{{item.dueDate}}</span>
+                            </div>
+                        </mat-card-subtitle>
+                        <mat-card-actions>
+                            <a mat-stroked-button color="accent" (click)="showTaskDetailDialog(item)">
+                                <mat-icon>remove_red_eye</mat-icon>
+                            </a>
+                            <a mat-stroked-button color="accent">
+                                <mat-icon>delete</mat-icon>
+                            </a>
+                        </mat-card-actions>
+                    </mat-card>
+                </div>
+                <div class="col-md-9">
+                    <h3 class="mat-display-1 mt-4 mb-4">Sprint List
+                        <button mat-raised-button color="primary" class="float-right" (click)="addSprintDialog()">
+                            <mat-icon>add</mat-icon>
+                            Add
+                        </button>
+                    </h3>
+
+                    <div class="row">
+                        <div class="col-md-6" *ngFor="let sprint of sprints">
+                            <mat-card class="d-card mt-1 mb-1">
+                                <mat-card-title>{{sprint.name}}</mat-card-title>
+                                <mat-card-subtitle><span>{{sprint.sprintPhase}} |
+                                    <span color="primary" class="mat-background-accent" *ngIf="sprint.sprintStatus=='ToDo'">{{sprint.sprintStatus}}</span>
+                                    <span color="warn" class="mat-background-warn" *ngIf="sprint.sprintStatus=='InProgress'">{{sprint.sprintStatus}}</span>
+                                    <span color="accent" class="mat-background-primary" *ngIf="sprint.sprintStatus=='Closed'">{{sprint.sprintStatus}}</span>
+                                    | {{sprint.effortPlanned}} points
+                                </span>
+                                </mat-card-subtitle>
+                                <mat-card-content>
+                                    <p>{{sprint.description}}</p>
+                                    <div fxLayout.gt-xs="row" fxLayout.xs="column">
+                                        <span fxFlex="50%">{{sprint.startDate}}</span>
+                                        <span fxFlex="50%">{{sprint.endDate}}</span>
+                                    </div>
+                                </mat-card-content>
+                                <mat-card-actions>
+                                    <a mat-stroked-button color="accent" routerLink="/sprint/{{sprint.sprintId}}">
+                                        <mat-icon>remove_red_eye</mat-icon>
+                                    </a>
+                                    <a mat-stroked-button color="accent">
+                                        <mat-icon>mode_edit</mat-icon>
+                                    </a>
+                                    <!--<a mat-stroked-button color="accent">
+                                        <mat-icon>delete</mat-icon>
+                                    </a>-->
+                                    <button mat-stroked-button color="warn">
+                                        <mat-icon>start</mat-icon>
+                                        Start
+                                    </button>
+                                    <button mat-stroked-button color="warn">
+                                        <mat-icon>close</mat-icon>
+                                        Close
+                                    </button>
+                                </mat-card-actions>
+                            </mat-card>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>

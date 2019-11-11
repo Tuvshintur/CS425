@@ -1,0 +1,43 @@
+<h2 mat-dialog-title>Sprint form</h2>
+
+<mat-dialog-content [formGroup]="form">
+  <mat-form-field class="full-width">
+    <input matInput required placeholder="Sprint Name" formControlName="name">
+  </mat-form-field>
+
+  <mat-form-field class="full-width">
+        <textarea matInput required placeholder="Sprint description" formControlName="description">
+        </textarea>
+  </mat-form-field>
+
+   <mat-form-field  class="half-width">
+      <mat-label>Sprint Phase</mat-label>
+      <select matNativeControl formControlName="sprintPhase" value="{{sprint.sprintPhase}}">
+          <option value="0">Inception</option>
+          <option value="1">Elaboration</option>
+          <option value="2">Construction</option>
+          <option value="3">Transition</option>
+      </select>
+  </mat-form-field>
+<!--  <mat-form-field class="half-width">
+    <input id="startpicker" formControlName="startDate" matInput [matDatepicker]="startpicker" placeholder="Choose a start date" required>
+    <mat-datepicker-toggle matSuffix [for]="startDate"></mat-datepicker-toggle>
+    <mat-datepicker #startpicker></mat-datepicker>
+  </mat-form-field>
+  <mat-form-field class="half-width">
+    <input id="duepicker" formControlName="dueDate" matInput [matDatepicker]="duepicker" placeholder="Choose a due date" required>
+    <mat-datepicker-toggle matSuffix [for]="dueDate"></mat-datepicker-toggle>
+    <mat-datepicker #duepicker></mat-datepicker>
+  </mat-form-field>-->
+</mat-dialog-content>
+
+<mat-dialog-actions>
+  <button class="mat-raised-button"
+          (click)="close()">
+    Close
+  </button>
+  <button class="mat-raised-button mat-primary"
+          (click)="onSubmit()" type = "submit">
+    Save
+  </button>
+</mat-dialog-actions>

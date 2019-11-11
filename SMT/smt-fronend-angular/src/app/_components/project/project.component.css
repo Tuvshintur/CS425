@@ -1,0 +1,14 @@
+.dcard {
+  max-width: 400px;
+}
+  
+.dcard-header-image {
+  background-image: url('https://material.angular.io/assets/img/examples/shiba1.jpg');
+  background-size: cover;
+}
+.fill-space {
+  flex: 1 1 auto;
+}
+.container{
+  min-height: 85vh;
+}

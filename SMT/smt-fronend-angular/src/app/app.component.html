@@ -1,0 +1,49 @@
+<mat-toolbar color="primary">
+    <mat-toolbar-row>
+        <h1 routerLink="/home">SMT</h1>
+        <span class="menu-spacer"></span>
+        <span>
+            <a mat-button [routerLink]="'/'"
+               onMouseOver="this.style.backgroundColor = '#fff';this.style.textDecoration='none'"
+               onMouseOut="this.style.backgroundColor='#3f51b5'">Home</a>
+            <a mat-button [routerLink]="'/project'"
+               onMouseOver="this.style.backgroundColor = '#fff';this.style.textDecoration='none'"
+               onMouseOut="this.style.backgroundColor='#3f51b5'">Project</a>
+        </span>
+        <span style="flex: 1 1 auto;"
+        ></span>
+        <span *ngIf="currentUser">
+            Hello, {{this.currentUser.username}}
+
+            <a mat-button (click)="logout()"
+               onMouseOver="this.style.backgroundColor = '#fff';this.style.textDecoration='none'"
+               onMouseOut="this.style.backgroundColor='#3f51b5'">Logout</a>
+        </span>
+    </mat-toolbar-row>
+</mat-toolbar>
+<div>
+    <router-outlet></router-outlet>
+</div>
+<footer>
+    <mat-toolbar color="primary">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-2"><p class="mb-0 sm-t"
+                                         style="font-size:16px; font-weight: 400; text-align:left;line-height: 16px;">
+                    STM - Course project</p></div>
+                <div class="col-md-8 align-content-center">
+                    <p class="mb-0 sm-t" style="font-size:16px; font-weight: 400; text-align:center;line-height: 16px;">
+                        Version 1.0
+                        <a href="https://github.com/Tuvshintur/SMT" target="_blank"
+                           style="font-size: 12px;color: #fff;display:block">GitHub link for code & documentation</a>
+                    </p>
+                </div>
+                <div class="col-md-2">
+                    <p class="mb-0 sm-t" style="font-size:16px; font-weight: 400; text-align:right;line-height: 16px;">
+                        Developed in MUM - CS425</p>
+                </div>
+            </div>
+        </div>
+    </mat-toolbar>
+</footer>
+

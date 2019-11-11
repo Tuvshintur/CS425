@@ -1,0 +1,12 @@
+.full-width {
+    width: 100%;
+}
+
+.half-width {
+    width: 45%;
+    margin-right: 25px;
+}
+
+.my-modal .mat-dialog-container {
+    padding: 0;
+}

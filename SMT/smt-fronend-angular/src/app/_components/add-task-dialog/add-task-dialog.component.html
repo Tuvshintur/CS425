@@ -1,0 +1,53 @@
+<h2 mat-dialog-title>Task form</h2>
+<mat-dialog-content [formGroup]="form">
+    <mat-form-field class="full-width">
+        <input matInput required placeholder="Task Name" formControlName="name">
+    </mat-form-field>
+
+    <mat-form-field class="half-width">
+        <input matInput required placeholder="Priority" formControlName="priority">
+    </mat-form-field>
+
+    <mat-form-field class="half-width">
+        <input matInput required placeholder="Status" formControlName="status">
+    </mat-form-field>
+
+    <mat-form-field class="half-width">
+        <input matInput required placeholder="Development Effort Point" formControlName="developmentEffortPoint">
+    </mat-form-field>
+
+    <mat-form-field class="half-width">
+        <input matInput required placeholder="Test Effort Point" formControlName="testEffortPoint">
+    </mat-form-field>
+
+    <mat-form-field class="half-width">
+        <input matInput required placeholder="Developer" formControlName="developer">
+    </mat-form-field>
+
+    <mat-form-field class="half-width">
+        <input matInput required placeholder="Tester" formControlName="tester">
+    </mat-form-field>
+
+    <mat-form-field class="half-width">
+        <input id="startpicker" formControlName="startDate" matInput [matDatepicker]="startpicker" placeholder="Choose a start date" required>
+        <mat-datepicker-toggle matSuffix [for]="startDate"></mat-datepicker-toggle>
+        <mat-datepicker #startpicker></mat-datepicker>
+    </mat-form-field>
+
+    <mat-form-field class="half-width">
+        <input id="duepicker" formControlName="dueDate" matInput [matDatepicker]="duepicker" placeholder="Choose a due date" required>
+        <mat-datepicker-toggle matSuffix [for]="dueDate"></mat-datepicker-toggle>
+        <mat-datepicker #duepicker></mat-datepicker>
+    </mat-form-field>
+</mat-dialog-content>
+
+<mat-dialog-actions>
+    <button class="mat-raised-button mr-2"
+            (click)="close()">
+        Close
+    </button>
+    <button class="mat-raised-button mat-primary"
+            (click)="onSubmit()" type = "submit">
+        Save
+    </button>
+</mat-dialog-actions>

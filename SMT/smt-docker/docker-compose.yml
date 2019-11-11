@@ -1,0 +1,37 @@
+# MySQL database shared with tomcat containers.
+db:
+  image: mysql:latest
+  environment:
+    MYSQL_ROOT_PASSWORD: Point123
+    MYSQL_DATABASE: smt
+    MYSQL_USER: root
+    MYSQL_PASSWORD: Point123
+  volumes:
+    - "./db:/docker-entrypoint-initdb.d"
+
+# First node of the first Tomcat virtual host.
+tomcat:
+  image: tomcat:latest
+  # Environment variables do not appear to be getting loaded the first time Tomcat starts!
+  environment:
+    VIRTUAL_HOST: tomcatcontainer
+    VIRTUAL_PORT: 8080
+    JDBC_URL: jdbc:mysql://db:3306/smt?connectTimeout=0&amp;socketTimeout=0&amp;autoReconnect=true
+    JDBC_USER: smt
+    JDBC_PASS: Point123
+  volumes:
+    - "./tomcat/webapps:/usr/local/tomcat/webapps"
+  links:
+    - db
+
+
+# nginx container that automatically creates a load balancer / reverse proxy across the 3 tomcat containers / 2 virtual hosts.
+nginx:
+  image: nginx:latest
+  ports:
+    - "80"
+  volumes:
+    - "/var/run/docker.sock:/tmp/docker.sock:ro"
+  links:
+    - tomcat
+

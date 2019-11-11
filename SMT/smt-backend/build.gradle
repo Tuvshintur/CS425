@@ -1,0 +1,52 @@
+plugins {
+    id 'org.springframework.boot' version '2.2.0.BUILD-SNAPSHOT'
+    id 'java'
+    id 'war'
+}
+
+apply plugin: 'io.spring.dependency-management'
+
+group = 'com.smt'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = '1.8'
+
+configurations {
+    compileOnly {
+        extendsFrom annotationProcessor
+    }
+}
+
+repositories {
+    mavenCentral()
+    maven { url 'https://repo.spring.io/snapshot' }
+    maven { url 'https://repo.spring.io/milestone' }
+}
+
+dependencies {
+    implementation('org.springframework.boot:spring-boot-starter-data-jpa')
+    implementation('org.springframework.boot:spring-boot-starter-jdbc')
+//    compile('com.oracle:ojdbc7:12.1.0.1')
+    compile('org.apache.poi:poi:3.17')
+    compile('org.apache.poi:poi-ooxml:3.17')
+    compile('org.apache.poi:poi-ooxml-schemas:3.17')
+    compile('org.apache.commons:commons-lang3:3.4')
+    compile('org.springframework:spring-websocket:4.0.0.RELEASE')
+    compile('org.springframework.boot:spring-boot-starter-security')
+    compile('org.springframework.security.oauth:spring-security-oauth2:2.3.3.RELEASE')
+    compile('org.springframework.boot:spring-boot-autoconfigure')
+    compile('io.jsonwebtoken:jjwt:0.9.0')
+    compile('io.springfox:springfox-swagger2:2.8.0')
+    compile('io.springfox:springfox-swagger-ui:2.8.0')
+    compile('org.modelmapper:modelmapper:2.3.2')
+    compile('org.springframework.plugin:spring-plugin-core:1.2.0.RELEASE')
+    compile('log4j:log4j:1.2.17')
+    compile('org.json:json:20180813')
+    compile('mysql:mysql-connector-java:8.0.11')
+    compile group: 'org.springframework.boot', name: 'spring-boot-starter-actuator'
+    implementation('org.springframework.boot:spring-boot-starter-web')
+    implementation('org.jboss.resteasy:resteasy-client:3.6.2.Final')
+    runtimeOnly('org.springframework.boot:spring-boot-devtools')
+    compileOnly('org.projectlombok:lombok')
+    providedRuntime('org.springframework.boot:spring-boot-starter-tomcat')
+    testImplementation('org.springframework.boot:spring-boot-starter-test')
+}
